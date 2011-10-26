@@ -16,38 +16,10 @@ public class Training1 {
             System.out.println(nextPrime(10));
             System.out.println(nextPrime(32));
             System.out.println(nextPrime(99900));
-            // System.out.println(isPerfectNumber(8128));
-            try {
-                long time = System.currentTimeMillis();
-                System.out.println(bigTest() + " in "
-                        + (System.currentTimeMillis() - time));
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static boolean bigTest() throws Exception {
-
-        BufferedReader bReader = new BufferedReader(new FileReader(
-                "bin/tests.txt"));
-        String line = "";
-        while ((line = bReader.readLine()) != null) {
-            String[] split = line.trim().split(",");
-            for (String num : split) {
-                num = num.trim();
-                int n = Integer.parseInt(num);
-                if (!isPrime(n))
-                    return false;
-            }
-
-        }
-        bReader.close();
-        return true;
     }
 
     public static boolean isPerfectNumber(int number) {
