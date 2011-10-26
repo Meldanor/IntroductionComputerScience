@@ -6,6 +6,7 @@ public class Training2 {
 
 //        Median.test();
 //        NPalindrome.test();
-        MyIntArray.test();
+//        MyIntArray.test();
+        Transformation.test();
     }
 }

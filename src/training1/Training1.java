@@ -1,7 +1,5 @@
 package training1;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 
 public class Training1 {
 
@@ -55,30 +53,5 @@ public class Training1 {
             number += 2;
 
         return number;
-    }
-
-    private static double heron(int number) {
-
-        double a = 1;
-        double b = number;
-        while (Math.abs(a - b) > 0.00000001) {
-            a = (a + b) / 2;
-            b = number / a;
-        }
-
-        return a;
-    }
-
-    private static double cubicHeron(int number) {
-        double a = 1;
-        double b = number;
-        double c = number;
-        while (Math.abs(a - c) > 0.00000001) {
-            a = (a + b) / 2;
-            b = number / a;
-            c = a * b;
-        }
-
-        return a;
     }
 }
