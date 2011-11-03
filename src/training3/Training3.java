@@ -6,6 +6,7 @@ public class Training3 {
 //        FriendlyNumbers.test();
 //        PerfectShuffeling.test();
 //        Recursive1.test();
-        Recursive3.test();
+        Recursive2.test();
+//        Recursive3.test();
     }
 }
