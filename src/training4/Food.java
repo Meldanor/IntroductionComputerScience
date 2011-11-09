@@ -7,10 +7,6 @@ public class Food implements Comparable<Food> {
 
     private static String[] TYPES = { "Apple", "Pear", "Cookie" };
 
-    public static void main(String[] args) {
-        // TODO your test cases
-    }
-
     private int calories;
     private String type;
 
@@ -39,6 +35,11 @@ public class Food implements Comparable<Food> {
         return calories;
     }
 
+    @Override
+    public String toString() {
+        return "A " + type + " having " + calories + " calories";
+    }
+
     public static Food[] createSortedRandomList(int n) {
 
         Random rand = new Random();
@@ -49,5 +50,17 @@ public class Food implements Comparable<Food> {
         }
         Arrays.sort(foods);
         return foods;
+    }
+
+    public static void test() {
+
+        System.out.println(Arrays.toString(createSortedRandomList(10)));
+        System.out.println(Arrays.toString(createSortedRandomList(30)));
+        System.out.println(Arrays.toString(createSortedRandomList(5)));
+
+        Food[] a = { new Food("Apple", 50), new Food("Pear", 49),
+                new Food("Apple", 49) };
+        Arrays.sort(a);
+        System.out.println(Arrays.toString(a));
     }
 }
