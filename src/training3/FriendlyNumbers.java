@@ -9,12 +9,11 @@ public class FriendlyNumbers {
         int sum = 0;
         out: while (counter < n) {
             ++number;
-            sum = getTeilerSum(number);
-            if (getTeilerSum(sum) == number && sum != number) {
+            sum = getDivisorSum(number);
+            if (getDivisorSum(sum) == number && sum != number) {
                 for (int i = 0; i < result.length; ++i) {
-                    if (result[i][0] == number || result[i][0] == sum) {
+                    if (number >= sum)
                         continue out;
-                    }
                 }
                 result[counter][0] = number;
                 result[counter][1] = sum;
@@ -23,20 +22,35 @@ public class FriendlyNumbers {
         }
         return result;
     }
+//
+//    private static int getTeilerSum(int number) {
+//        int sum = 1;
+//        int border = (number / 2) + 1;
+//        for (int i = 2; i < border; ++i)
+//            if (number % i == 0)
+//                sum += i;
+//
+//        return sum;
+//    }
 
-    private static int getTeilerSum(int number) {
+    public static int getDivisorSum(int n) {
+        
         int sum = 1;
-        int border = (number / 2) + 1;
-        for (int i = 2; i < border; ++i)
-            if (number % i == 0)
-                sum += i;
-
+        int i = 2;
+        while (i * i <= n) {
+            if (n % i == 0) {
+                sum += i + n /i;
+                if (n / i == i)
+                    sum -= i;
+            }
+            ++i;
+        }
         return sum;
     }
-
+    
     public static void test() {
 
-        int[][] result = amicablePairs(11);
+        int[][] result = amicablePairs(50);
         for (int[] array : result)
             System.out.println(array[0] + "," + array[1]);
     }
