@@ -27,14 +27,16 @@ public class PerfectShuffeling {
         for (int i = 0; i < n; ++i)
             a[i] = i + 1;
 
-        int[] b = shuffle(a);
-        int counter = 1;
+        int[] b = a;
+        int counter = 0;
 
         // shuffle as long as the origin arrays isn't reached
-        while (!areEqual(a, b)) {
+        do {
             b = shuffle(b);
             ++counter;
         }
+        while (!areEqual(a, b));
+
         return counter;
     }
 
@@ -53,6 +55,6 @@ public class PerfectShuffeling {
         int[] c = { 1, 2, 3, 4, 5, 6, 7, 8 };
         System.out.println(Arrays.toString(shuffle(c)));
 
-        System.out.println(shuffleNumber(1000));
+        System.out.println(shuffleNumber(58));
     }
 }
