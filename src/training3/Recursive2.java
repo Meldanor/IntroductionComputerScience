@@ -52,6 +52,12 @@ public class Recursive2 {
  *          = 7 * 6 / 2 = 24
  *      f(8,5)   = 8 * 24 / 3 = 56
      */
+    /**
+     * Binomialkoeffizient x ueber y
+     * @param x
+     * @param y
+     * @return
+     */
     public static int g(int x, int y) {
         if (y == 0)
             return 1;
