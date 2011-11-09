@@ -45,9 +45,9 @@ public class Food implements Comparable<Food> {
         Random rand = new Random();
         Food[] foods = new Food[n];
 
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; ++i)
             foods[i] = new Food(TYPES[rand.nextInt(3)], rand.nextInt(1294) + 42);
-        }
+
         Arrays.sort(foods);
         return foods;
     }

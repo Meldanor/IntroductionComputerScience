@@ -42,8 +42,8 @@ public class DifferentialPolynom {
     public static void test() {
 
         double[] a = { 1, 2, 3, 4, 5 };
-        // System.out.println(polyToString(a));
-        // System.out.println(polyToString(diffPoly(a, 2)));
+         System.out.println(polyToString(a));
+         System.out.println(polyToString(diffPoly(a, 2)));
 
         a = new double[] { 8, 5, 6 };
         System.out.println(intPoly(a, 0, 1));
