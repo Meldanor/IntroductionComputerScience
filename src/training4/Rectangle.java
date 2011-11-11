@@ -144,8 +144,6 @@ public class Rectangle {
      */
     public boolean isInside(int xP, int yP, int xR, int yR, int width,
             int height) {
-        width *= 2;
-        height *= 2;
         return (xP <= xR + width) && (xP >= xR) && (yP <= yR + height)
                 && (yP >= yR);
     }
