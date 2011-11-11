@@ -1,5 +1,6 @@
 package training4;
 
+@SuppressWarnings("serial")
 public class RectangleFake extends java.awt.Rectangle {
 
     public RectangleFake(int x, int y, int width, int height) {

@@ -1,5 +1,3 @@
-import training1.Training1;
-import training3.Training3;
 import training4.Training4;
 
 public class Main {
