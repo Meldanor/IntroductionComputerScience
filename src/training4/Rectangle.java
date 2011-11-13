@@ -93,59 +93,25 @@ public class Rectangle {
                 Math.max(height, r2.getHeight()));
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof Rectangle))
-            return false;
-        Rectangle r2 = (Rectangle) obj;
-
-        return r2.getX() == this.x && r2.getY() == this.y
-                && r2.getWidth() == width && r2.getHeight() == height;
-    }
-
     public boolean intersect(Rectangle r2) {
-        // when both rectangles have the same attributs
-        if (equals(r2))
-            return true;
-        // attributes of the other rectangle
-        int x1 = r2.getX();
-        int y1 = r2.getY();
-        int height1 = r2.getHeight();
-        int width1 = r2.getWidth();
+        // init new variables so we don't lose the old values
+        int w1 = this.width;
+        int h1 = this.height;
+        int w2 = r2.getWidth();
+        int h2 = r2.getHeight();
 
-        // check the corners of the other rectangle are inside this rectangle
-        return isInside(x1 + width1, y1 + height1, x, y, width, height)
-                || isInside(x1, y1 + height1, x, y, width, height)
-                || isInside(x1 + width1, y1, x, y, width, height)
-                || isInside(x1, y1, x, y, width, height)
+        int x1 = this.x;
+        int y1 = this.y;
+        int x2 = r2.getX();
+        int y2 = r2.getY();
 
-                // check the corners of this rectangle are inside the other
-                // rectangle
-                || isInside(x + width, y + height, x1, y1, width1, height1)
-                || isInside(x, y + height, x1, y1, width1, height1)
-                || isInside(x + width, y, x1, y1, width1, height1)
-                || isInside(x, y, x1, y1, width1, height1);
+        // size the rectangles so two borders are the x and the y axis
+        w2 += x2;
+        h2 += y2;
+        w1 += x1;
+        h1 += y1;
+        // check if the buttom-left corner is inside the big rectangle
+        return ((((w2 < x2) || (w2 > x1))) && (((h2 < y2) || (h2 > y1)))
+                && (((w1 < x1) || (w1 > x2))) && (((h1 < y1) || (h1 > y2))));
     }
-
-    /**
-     * @param xP
-     *            x-Coordinate of the point
-     * @param yP
-     *            y-Coordinate of the point
-     * @param xR
-     *            Buttom-left corner x-Coordinate
-     * @param yR
-     *            Buttom-left corner y-Coordinate
-     * @param width
-     *            The width of the rectangle
-     * @param height
-     *            The width of the rectangle
-     * @return True when the point given by xP and yP is in the rectangle
-     */
-    public boolean isInside(int xP, int yP, int xR, int yR, int width,
-            int height) {
-        return (xP <= xR + width) && (xP >= xR) && (yP <= yR + height)
-                && (yP >= yR);
-    }
-
 }
