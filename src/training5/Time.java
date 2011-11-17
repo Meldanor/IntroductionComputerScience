@@ -21,14 +21,25 @@ public class Time implements Comparable<Time> {
     }
 
     public Time(int minute) {
+        minute = Math.abs(minute % 1440);
         this.hour = minute / 60;
         this.minute = minute % 60;
     }
 
     public Time(String time) {
-        String[] split = time.split(":");
-        this.hour = Integer.parseInt(split[0]);
-        this.minute = Integer.parseInt(split[1]);
+        try {
+            String[] split = time.split(":");
+            this.hour = Integer.parseInt(split[0]);
+            this.minute = Integer.parseInt(split[1]);
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Please use the format HH:MM");
+            e.printStackTrace();
+        }
+        catch (Exception e) {
+            // DO SOMETHING
+            e.printStackTrace();
+        }
     }
 
     public int getHour() {
@@ -41,12 +52,12 @@ public class Time implements Comparable<Time> {
 
     public Time add(int min) {
         int m = this.minute + min;
-        int h = this.hour;
-        while (m >= 60) {
-            ++h;
-            m -= 60;
-        }
-        return new Time(m, h);
+        // if new time is less then 00:00, turn it to something between 00:00
+        // and 23:59
+        // 1440 = 60 (minutes per hour) * 24(hours per day)
+        if (m < 0 || m >= 1440)
+            m = Math.abs(m % 1440);
+        return new Time(m % 60, this.hour + (m / 60));
     }
 
     public Time add(Time t) {
@@ -55,12 +66,12 @@ public class Time implements Comparable<Time> {
 
     public Time sub(int min) {
         int m = this.minute - min;
-        int h = this.hour;
-        while (m < 0) {
-            --h;
-            m += 60;
-        }
-        return new Time(m, h);
+        // if new time is less then 00:00, turn it to something between 00:00
+        // and 23:59
+        // 1440 = 60 (minutes per hour) * 24(hours per day)
+        if (m < 0 || m >= 1440)
+            m = Math.abs(m % 1440);
+        return new Time(m % 60, this.hour - (m / 60));
     }
 
     public Time sub(Time t) {
@@ -68,7 +79,7 @@ public class Time implements Comparable<Time> {
     }
 
     public int compareTo(Time t) {
-        int totalThis = (hour * 60) + minute;
+        int totalThis = (this.hour * 60) + this.minute;
         int totalOther = (t.getHour() * 60) + t.getMinutes();
         if (totalOther > totalThis)
             return -1;
