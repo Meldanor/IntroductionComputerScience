@@ -12,7 +12,7 @@ package training5;
 
 public class Matrix {
 
-    int[][] matrix;
+    private int[][] matrix;
 
     public Matrix(int[][] matrix) {
         this.matrix = matrix;
@@ -77,6 +77,7 @@ public class Matrix {
         //formatter:on
         Matrix m = new Matrix(test);
         System.out.println(m.toString());
+        // true
         System.out.println(m.isTriangularMatrix());
         System.out.println(Matrix.isTriangularMatrix(m));
         System.out.println();
@@ -102,6 +103,8 @@ public class Matrix {
         //@formatter:on
         m = new Matrix(test);
         System.out.println(m.toString());
+
+        // false
         System.out.println(m.isTriangularMatrix());
         System.out.println(Matrix.isTriangularMatrix(m));
     }
