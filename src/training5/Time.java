@@ -34,7 +34,6 @@ public class Time implements Comparable<Time> {
         }
         catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Please use the format HH:MM");
-            e.printStackTrace();
         }
         catch (Exception e) {
             // DO SOMETHING
@@ -42,39 +41,66 @@ public class Time implements Comparable<Time> {
         }
     }
 
+    /**
+     * @return Number between inclusive 0 and exclusive 24
+     */
     public int getHour() {
         return hour;
     }
 
+    /**
+     * @return Number between inclusive 0 and exclusive 60
+     */
     public int getMinutes() {
         return minute;
     }
 
+    /**
+     * Add minutes to this time and return a new Time object representing the
+     * new time
+     * 
+     * @param min
+     *            Positive integer
+     * @return This time plus minutes
+     */
     public Time add(int min) {
-        int m = this.minute + min;
+        int m = (this.minute + (60 * hour)) + min;
         // if new time is less then 00:00, turn it to something between 00:00
         // and 23:59
         // 1440 = 60 (minutes per hour) * 24(hours per day)
-        if (m < 0 || m >= 1440)
+        if (m >= 1440)
             m = Math.abs(m % 1440);
-        return new Time(m % 60, this.hour + (m / 60));
+
+        return new Time(m / 60, m % 60);
     }
 
     public Time add(Time t) {
+        // use add methode by converting the time object into minutes from 0 to
+        // 1439
         return add((t.getHour() * 60) + t.getMinutes());
     }
 
+    /**
+     * Differ minutes to this time and return a new Time object representing the
+     * new time
+     * 
+     * @param min
+     *            Positive integer
+     * @return This time minus minutes
+     */
     public Time sub(int min) {
-        int m = this.minute - min;
+        int m = (this.minute + (60 * hour)) - min;
         // if new time is less then 00:00, turn it to something between 00:00
         // and 23:59
         // 1440 = 60 (minutes per hour) * 24(hours per day)
-        if (m < 0 || m >= 1440)
-            m = Math.abs(m % 1440);
-        return new Time(m % 60, this.hour - (m / 60));
+        if (m < 0)
+            m = 1440 - Math.abs(m % 1440);
+        return new Time(m / 60, m % 60);
     }
 
     public Time sub(Time t) {
+        // use sub methode by converting the time object into minutes from 0 to
+        // 1439
         return sub((t.getHour() * 60) + t.getMinutes());
     }
 
@@ -91,6 +117,24 @@ public class Time implements Comparable<Time> {
 
     @Override
     public String toString() {
-        return hour + ":" + minute;
+        String result = "";
+        if (hour < 10)
+            result += "0";
+        result += hour + ":";
+        if (minute < 10)
+            result += "0";
+        return result + minute;
+    }
+
+    public static void test() {
+        // 23:59
+        Time t3 = new Time(-1439);
+        System.out.println(t3);
+        Time t1 = new Time("12:00");
+        Time t2 = new Time("12:10");
+        // 23:50
+        System.out.println(t1.sub(t2));
+        // 12:05
+        System.out.println(t2.sub(5));
     }
 }
