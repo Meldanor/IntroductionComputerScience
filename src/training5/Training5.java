@@ -14,8 +14,8 @@ public class Training5 {
 
     public static void test() {
 //        MyAckermann.test();
-//        Fibonacci.test();
+        Fibonacci.test();
 //        Matrix.test();
-        Time.test();
+//        Time.test();
     }
 }
