@@ -31,7 +31,7 @@ public class Conflict {
         return !(wife(n) == husband(n));
     }
 
-    // little buggy, kA warum -> statt fuer n = 6 [1, 2, 3, 5, 8, 13, 21, 34, 55] sollte [1, 1, 2, 3, 5, 8] kommen
+    // little buggy, kA warum -> statt fuer n = 6 [1, 2, 3, 5, 8, 13] sollte [1, 1, 2, 3, 5, 8] kommen
     public static int[] differenceFights(int n) {
         int[] result = new int[n];
 
