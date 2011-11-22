@@ -100,7 +100,7 @@ public class RatNumber implements Comparable<RatNumber> {
         return this.num + "/" + this.denom;
     }
 
-    public static void main(String[] args) {
+    public static void test() {
         // TODO: test data
     }
 }
