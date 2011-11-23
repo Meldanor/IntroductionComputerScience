@@ -8,7 +8,6 @@
  * begegnen.
  */
 
-
 package training5;
 
 import java.math.BigInteger;
@@ -38,4 +37,26 @@ public class MyAckermann {
         System.out.println(ackermann(TWO.add(BigInteger.ONE),
                 TWO.add(BigInteger.ONE)));
     }
+
+    //@formatter:off
+    /**
+     * a ) Trivaler Fall
+     * b ) z.Z. ack(1,n) = 2^n
+     *     IA   ack(1,1) = 2^1 = 2 (per Defintion)
+     *     IV   ack(1,k) = 2^k
+     *     IBeh ack(1,k+1) = 2^(k+1)
+     *     Ibew ack(1,k+1) = ack(0, ack(1,k))
+     *          Nach IV -> = ack(0,2^k) 
+     *                     = 2*2^k = 2^(k+1)
+     *                     q.e.d
+     * c ) z.Z ack(2,n) = 2^2^2^...^2 = hyp(2,n) (nach eigener Definition)
+     *         IA  ack(2,2) = ack(1,(ack(2,1))
+     *                   2  = 2
+     *         IB hyp(2,n+1) = ack(2,n+1)
+     *                       = ack(1,(ack(2,n))
+     *         Nach IV ->    = ack(1, hyp(2,n))
+     *                       = 2^(hyp(2,n))
+     *                       = hyp(2,n+1) q.e.d 
+     */
+    //@formatter:on
 }
