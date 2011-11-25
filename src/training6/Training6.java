@@ -13,8 +13,8 @@ package training6;
 public class Training6 {
 
     public static void test() {
-//        Conflict.test();
-        FarmerMult.test();
+        Conflict.test();
+//        FarmerMult.test();
     }
 }
 

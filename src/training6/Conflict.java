@@ -31,20 +31,14 @@ public class Conflict {
         return !(wife(n) == husband(n));
     }
 
-    // little buggy, kA warum -> statt fuer n = 6 [1, 2, 3, 5, 8, 13] sollte [1, 1, 2, 3, 5, 8] kommen
     public static int[] differenceFights(int n) {
         int[] result = new int[n];
 
         int last = 0;
-        for (int i = 0, j = 0; i < n; ++j) {
+        for (int i = 0, j = 1; i < n; ++j) {
             if (fight(j)) {
-                if (last == 0)
-                    last = j;
-
-                else {
-                    result[i++] = j - last;
-                    last = j;
-                }
+                result[i++] = j - last;
+                last = j;
             }
         }
 
@@ -53,8 +47,8 @@ public class Conflict {
 
     public static void test() {
         // Fibonnacci!
-        for (int i = 0; i < 10; ++i) {
-            System.out.println(Arrays.toString(differenceFights(i)));
+        for (int i = 1; i <= 10; ++i) {
+            System.out.println(i + "=" + Arrays.toString(differenceFights(i)));
         }
 
         if (fight(7)) {
@@ -71,6 +65,6 @@ public class Conflict {
             System.out
                     .println("Die silberne Hochzeit wird friedlich verlaufen!");
 
-        // Vertragen sich besser, da die Difference immer groesser wird.
+        // Vertragen sich besser, da die Differenz immer groesser wird.
     }
 }
