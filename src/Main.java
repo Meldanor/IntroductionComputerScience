@@ -1,3 +1,5 @@
+import training7.Training7;
+
 /*
  * Copyright (C) 2011 Kilian Gaertner
  * 
@@ -7,9 +9,6 @@
  * des Copyrights eine Pizza spendieren, sollte derjenige dem Inhabenden des Copyrights
  * begegnen.
  */
-
-
-import training6.Training6;
 
 public class Main {
 
@@ -21,8 +20,9 @@ public class Main {
         // new Training1().test();
         // Training3.test();
         // Training4.test();
-//        Training5.test();
-        Training6.test();
+        // Training5.test();
+        // Training6.test();
+        Training7.test();
         // System.out.println(-1260 % 1440);
     }
 }
