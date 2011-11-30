@@ -52,20 +52,12 @@ public class RatNumber implements Comparable<RatNumber> {
     }
 
     public int compareTo(RatNumber n) {
-
-        double r = (double) this.num / (double) this.denom;
-
-        double r2 = (double) n.getNum() / (double) n.getDenom();
-
-        if (r < r2)
-            return -1;
-        if (r > r2)
-            return 1;
-        return 0;
+        return this.sub(n).getNum();
     }
 
     private int kgV(int a, int b) {
-        return (a * b) / ggt(a, b);
+        int ggt = ggt(a, b);
+        return (a / ggt) * (b / ggt);
     }
 
     public RatNumber add(RatNumber r) {
@@ -135,7 +127,8 @@ public class RatNumber implements Comparable<RatNumber> {
 
         // generate numbers from -10 to 9
         for (int i = 0; i < numbers.length; ++i)
-            numbers[i] = new RatNumber(rand.nextInt(10) * (rand.nextBoolean() ? 1 : -1), rand.nextInt(10) + 1);
+            numbers[i] = new RatNumber(rand.nextInt(10)
+                    * (rand.nextBoolean() ? 1 : -1), rand.nextInt(10) + 1);
 
         // Example: [1/3, 7, 7/2, 2/7, 3/5, 2, 4/9, 6, 3/8, 2/9]
         System.out.println(Arrays.toString(numbers));
