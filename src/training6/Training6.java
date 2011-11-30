@@ -14,7 +14,8 @@ public class Training6 {
 
     public static void test() {
 //        Conflict.test();
-        FarmerMult.test();
+//        FarmerMult.test();
+        RatNumber.test();
     }
 }
 

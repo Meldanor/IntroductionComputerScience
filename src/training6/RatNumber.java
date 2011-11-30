@@ -10,6 +10,9 @@
 
 package training6;
 
+import java.util.Arrays;
+import java.util.Random;
+
 public class RatNumber implements Comparable<RatNumber> {
     private int num;
     private int denom;
@@ -18,16 +21,13 @@ public class RatNumber implements Comparable<RatNumber> {
         if (d == 0)
             throw new RuntimeException("divisor zero");
 
-        if (n < 0 && d < 0) {
-            n = Math.abs(n);
-            d = Math.abs(d);
-        }
-        else if (n > 0 && d < 0) {
+        if (d < 0) {
             n *= -1;
             d *= -1;
         }
 
-        int ggt = ggt(n, d);
+        int ggt = Math.abs(ggt(n, d));
+
         this.num = n / ggt;
         this.denom = d / ggt;
 
@@ -53,10 +53,15 @@ public class RatNumber implements Comparable<RatNumber> {
 
     public int compareTo(RatNumber n) {
 
-        double r = this.num / this.denom;
-        double r2 = n.getNum() / n.getDenom();
+        double r = (double) this.num / (double) this.denom;
 
-        return r > r2 ? 1 : r < r2 ? -1 : 0;
+        double r2 = (double) n.getNum() / (double) n.getDenom();
+
+        if (r < r2)
+            return -1;
+        if (r > r2)
+            return 1;
+        return 0;
     }
 
     private int kgV(int a, int b) {
@@ -96,11 +101,46 @@ public class RatNumber implements Comparable<RatNumber> {
     }
 
     public String toString() {
+        if (denom == 1)
+            return String.valueOf(num);
 
         return this.num + "/" + this.denom;
     }
 
     public static void test() {
-        // TODO: test data
+        RatNumber r1 = new RatNumber(1, 2);
+        RatNumber r2 = new RatNumber(1, 4);
+
+        // 1
+        System.out.println(r1.add(r1));
+        // 3/4
+        System.out.println(r1.add(r2));
+        // 0
+        System.out.println(r1.sub(r1));
+        // -1/4
+        System.out.println(r1.sub(r2).sub(r1));
+        // -1/2
+        System.out.println(new RatNumber(-1, 2));
+        // -1/2
+        System.out.println(new RatNumber(1, -2));
+        // 1/2
+        System.out.println(new RatNumber(-1, -2));
+        // 1/4
+        System.out.println(r1.mult(r1));
+        // 1/2
+        System.out.println(r1.mult(r1).div(r1));
+
+        RatNumber[] numbers = new RatNumber[10];
+        Random rand = new Random();
+
+        // generate numbers from -10 to 9
+        for (int i = 0; i < numbers.length; ++i)
+            numbers[i] = new RatNumber(rand.nextInt(10) * (rand.nextBoolean() ? 1 : -1), rand.nextInt(10) + 1);
+
+        // Example: [1/3, 7, 7/2, 2/7, 3/5, 2, 4/9, 6, 3/8, 2/9]
+        System.out.println(Arrays.toString(numbers));
+        Arrays.sort(numbers);
+        // Sorted: [2/9, 2/7, 1/3, 3/8, 4/9, 3/5, 2, 7/2, 6, 7]
+        System.out.println(Arrays.toString(numbers));
     }
 }
