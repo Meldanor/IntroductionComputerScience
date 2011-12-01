@@ -1,4 +1,4 @@
-import training7.Training7;
+import training7.gauss.Solid;
 
 /*
  * Copyright (C) 2011 Kilian Gaertner
@@ -22,7 +22,43 @@ public class Main {
         // Training4.test();
         // Training5.test();
         // Training6.test();
-        Training7.test();
+        // Training7.test();
         // System.out.println(-1260 % 1440);
+
+        //@formatter:off
+        int[][] test = new int[][]{
+                {
+                    5 , 5 , 5, 5, 5
+                },
+                {
+                    0 , 1 , 5, 5, 5
+                },
+                {
+                    0 , 1 , 2, 5, 5
+                },
+                {
+                    0 , 0 , 0, 1, 5
+                },
+                {
+                    0 , 0 , 0, 0, 4
+                }
+        };
+        //@formatter:on
+
+        for (int i = 0; i < test.length; ++i) {
+            System.out.println(test[i][0]);
+            // for (int j = 0; j < test[i].length; ++j)
+
+        }
+        System.out.println(isInNormalForm);
+    }
+
+    private boolean isInNormalForm(int[][] matrix) {
+        for (int i = 0; i < matrix.length; ++i)
+            for (int j = i + 1; j < matrix[i].length; ++j)
+                if (matrix[j][i] != 0)
+                    return false;
+
+        return true;
     }
 }
