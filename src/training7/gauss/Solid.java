@@ -12,19 +12,50 @@ package training7.gauss;
 
 public interface Solid {
 
+    /**
+     * Add a element of the Solid to this element. Doesn't change the Solid
+     * itself, create a new one
+     * 
+     * @param s
+     *            The other summand
+     * @return The sum of both elements
+     */
     public Solid add(Solid s);
 
-    public Solid sub(Solid s);
-
+    /**
+     * Multiply an element s of this Solid to this element. Doesn't change the
+     * Solid itself, create a new one
+     * 
+     * @param s
+     *            The factor
+     * @return The product of both elements
+     */
     public Solid mult(Solid s);
 
-    public Solid div(Solid s);
-
+    /**
+     * Returns the factor of the Solid, which solves: s / x = neutral element of
+     * Solid
+     * 
+     * @param s
+     *            The element searches for the inverse
+     * @return The inverse element of s
+     */
     public Solid getInverse(Solid s);
 
+    /**
+     * Convert the Solid to a readable format
+     * 
+     * @return
+     */
     public String toString();
 
-    public boolean isZero();
+    /**
+     * @return Is the element the neutral element of addition?
+     */
+    public boolean isNeutralAdd();
 
-    public boolean isOne();
+    /**
+     * @return Is the element the neutral element of multiplication?
+     */
+    public boolean isNeutralMult();
 }

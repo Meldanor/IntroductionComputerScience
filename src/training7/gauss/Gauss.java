@@ -25,7 +25,7 @@ public class Gauss {
         for (int row = 0; row < matrix.length; ++row) {
             for (int column = row; column < matrix[row].length; ++column) {
                 Solid s = matrix[row][column];
-                if (!s.isZero()) {
+                if (!s.isNeutralAdd()) {
                     int lineIndex = searchForSwap(matrix, row, column);
                     if (lineIndex != -1)
                         swap(matrix, lineIndex, column);
@@ -36,17 +36,9 @@ public class Gauss {
         }
     }
 
-    private boolean isInNormalForm(Solid[][] matrix) {
-        for (int i = 0; i < matrix.length; ++i) {
-            for (int j = 0; j < i; ++j) {
-                
-            }
-        }
-    }
-
     private int searchForSwap(Solid[][] matrix, int row, int colum) {
         for (int i = row + 1; i < matrix.length; ++i)
-            if (matrix[i][colum].isZero())
+            if (matrix[i][colum].isNeutralAdd())
                 return i;
 
         return -1;

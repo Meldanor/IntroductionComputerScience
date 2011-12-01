@@ -50,15 +50,6 @@ public class Main {
             // for (int j = 0; j < test[i].length; ++j)
 
         }
-        System.out.println(isInNormalForm);
     }
 
-    private boolean isInNormalForm(int[][] matrix) {
-        for (int i = 0; i < matrix.length; ++i)
-            for (int j = i + 1; j < matrix[i].length; ++j)
-                if (matrix[j][i] != 0)
-                    return false;
-
-        return true;
-    }
 }
