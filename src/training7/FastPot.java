@@ -10,9 +10,26 @@
 
 package training7;
 
+/*
+ * a)
+ * x = 2, n = 13
+ * 2^13 = 2 *   2^12
+ *              2^12 = 4^6
+ *              4^6  = 16^3
+ *                     16 * 16^2
+ *                          256^1
+ *                          256*256^0
+ *                              1
+ *                          256*1
+ *                     16 * 256
+ *        2 * 16 * 256
+ *       = 8192
+ */
+
 public class FastPot {
 
     private static int counterRek = 0;
+    private static int counterIter = 0;
 
     public static double fastPotRek(double x, int n) {
         ++counterRek;
@@ -25,25 +42,31 @@ public class FastPot {
     }
 
     public static double fastPotIter(double x, int n) {
-        double result = x;
-        while (n != 0) {
+        if (n == 0)
+            return 1;
+        double temp = 1;
+        counterIter = 0;
+        while (n > 1) {
             if (n % 2 == 0) {
-                result *= x * x;
+                x *= x;
                 n = n / 2;
             }
             else {
-                result *= x * x;
+                temp *= x;
                 --n;
             }
+            ++counterIter;
         }
-        return result;
-
+        return x * temp;
     }
 
     public static void test() {
-        // System.out.println(fastPotRek(2, 13));
-        // System.out.println(counterRek);
-        System.out.println(fastPotIter(2, 13));
-        System.out.println(fastPotIter(2, 14));
+
+        for (int i = 0; i <= 31; ++i) {
+            System.out.println(i + " = iter(" + fastPotIter(2, i) + ") with "
+                    + counterIter + " loops \t rek(" + fastPotRek(2, i)
+                    + ")with deepth of " + counterRek);
+            counterRek = 0;
+        }
     }
 }
