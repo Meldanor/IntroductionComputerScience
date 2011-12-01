@@ -125,12 +125,12 @@ public class RatNumber implements Comparable<RatNumber>, Solid {
     }
 
     @Override
-    public boolean isNeutralAdd() {
+    public boolean isOneElement() {
         return num == 0;
     }
 
     @Override
-    public boolean isNeutralMult() {
+    public boolean isZeroElement() {
         return denom == num;
     }
 }

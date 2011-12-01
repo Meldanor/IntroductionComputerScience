@@ -25,10 +25,12 @@ public class Gauss {
         for (int row = 0; row < matrix.length; ++row) {
             for (int column = row; column < matrix[row].length; ++column) {
                 Solid s = matrix[row][column];
-                if (!s.isNeutralAdd()) {
+                if (!s.isOneElement()) {
                     int lineIndex = searchForSwap(matrix, row, column);
-                    if (lineIndex != -1)
+                    if (lineIndex != -1) {
                         swap(matrix, lineIndex, column);
+                        --column;
+                    }
                     else {
                     }
                 }
@@ -38,7 +40,7 @@ public class Gauss {
 
     private int searchForSwap(Solid[][] matrix, int row, int colum) {
         for (int i = row + 1; i < matrix.length; ++i)
-            if (matrix[i][colum].isNeutralAdd())
+            if (matrix[i][colum].isOneElement())
                 return i;
 
         return -1;

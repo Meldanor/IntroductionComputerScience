@@ -52,10 +52,10 @@ public interface Solid {
     /**
      * @return Is the element the neutral element of addition?
      */
-    public boolean isNeutralAdd();
+    public boolean isOneElement();
 
     /**
      * @return Is the element the neutral element of multiplication?
      */
-    public boolean isNeutralMult();
+    public boolean isZeroElement();
 }

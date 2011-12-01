@@ -1,4 +1,3 @@
-import training7.gauss.Solid;
 
 /*
  * Copyright (C) 2011 Kilian Gaertner
