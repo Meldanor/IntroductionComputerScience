@@ -35,7 +35,7 @@ public class Conflict {
         int[] result = new int[n];
 
         int last = 0;
-        for (int i = 0, j = 1; i < n; ++j) {
+        for (int i = 0, j = 1; i < n; ++j) {    
             if (fight(j)) {
                 result[i++] = j - last;
                 last = j;

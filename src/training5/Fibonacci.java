@@ -29,7 +29,7 @@ public class Fibonacci {
             return BigInteger.ONE;
         else
             return fib3(n - 2, ++counter).add(fib3(n - 1, ++counter));
-        
+
     }
 
     public static BigInteger fib2(int n) {
@@ -48,26 +48,26 @@ public class Fibonacci {
     }
 
     public static void test() {
-//        for (int i = 0; i <= 20; ++i) {
-//            System.out.println("n=" + i);
-//            System.out.println("Rek " + fib1(i));
-//            System.out.println("Ite " + fib2(i));
-//            System.out.println();
-//        }
+        // for (int i = 0; i <= 20; ++i) {
+        // System.out.println("n=" + i);
+        // System.out.println("Rek " + fib1(i));
+        // System.out.println("Ite " + fib2(i));
+        // System.out.println();
+        // }
 
-        System.out.println(fib3(22,0));
+        System.out.println(fib3(22, 0));
         System.out.println(fib2(22));
 
         BigDecimal goldenCut = BigDecimal.ONE;
         BigDecimal old = BigDecimal.ZERO;
         BigDecimal current = BigDecimal.ONE;
-//
-//        for (int i = 0; i <= 100; ++i) {
-//            old = current;
-//            current = new BigDecimal(fib2(i));
-//            goldenCut = current.divide(old, MathContext.DECIMAL128);
-//            System.out.println(goldenCut);
-//        }
+        //
+        for (int i = 0; i <= 100; ++i) {
+            old = current;
+            current = new BigDecimal(fib2(i));
+            goldenCut = current.divide(old, 1000, BigDecimal.ROUND_HALF_EVEN);
+            System.out.println(goldenCut);
+        }
         // goldenCut ca 1,618
         // after 100 numbers : 1.618033988749894848204586834365638
     }
