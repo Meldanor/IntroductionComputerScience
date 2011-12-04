@@ -117,11 +117,8 @@ public class RatNumber implements Comparable<RatNumber>, Solid {
     }
 
     @Override
-    public Solid getInverse(Solid s) {
-        if (!(s instanceof RatNumber))
-            throw new RuntimeException(this.getClass().getName()
-                    + "expected, but it was " + s.getClass().getName());
-        return null;
+    public Solid getMultInverse() {
+        return new RatNumber(getDenom(), getNum());
     }
 
     @Override
@@ -132,5 +129,9 @@ public class RatNumber implements Comparable<RatNumber>, Solid {
     @Override
     public boolean isZeroElement() {
         return denom == num;
+    }
+
+    public Solid getAddInverse() {
+        return new RatNumber(getNum() * -1, getDenom());
     }
 }

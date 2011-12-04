@@ -21,21 +21,28 @@ public class Gauss {
 
     public void solve() {
         Solid[][] matrix = original.clone();
-        // look whether we have to do something
-        for (int row = 0; row < matrix.length; ++row) {
-            for (int column = row; column < matrix[row].length; ++column) {
-                Solid s = matrix[row][column];
-                if (!s.isOneElement()) {
-                    int lineIndex = searchForSwap(matrix, row, column);
-                    if (lineIndex != -1) {
-                        swap(matrix, lineIndex, column);
-                        --column;
-                    }
-                    else {
-                    }
+        Solid[] pivot = null;
+        for (int k = 0; k < matrix.length; ++k) {
+            pivot = matrix[k];
+            if (pivot[k].isZeroElement()) {
+                int result = searchForSwap(matrix, k, k);
+                if (result == -1)
+                    ++k;
+                else
+                    swap(matrix, k, result);
+            }
+            Solid mult = matrix[k][k].getMultInverse();
+            for (int i = 1; i < matrix[k].length; ++i)
+                pivot[i] = pivot[i].mult(mult);
+            for (int i = k + 1; i < matrix.length; ++i) {
+                for (int j = k; j < matrix[i].length; ++j) {
+                    matrix[i][j] = matrix[i][j].mult(mult);
                 }
+                add(matrix, k, i);
             }
         }
+
+        this.result = matrix;
     }
 
     private int searchForSwap(Solid[][] matrix, int row, int colum) {
@@ -60,26 +67,6 @@ public class Gauss {
         Solid[] temp = matrix[row1];
         matrix[row1] = matrix[row2];
         matrix[row2] = temp;
-    }
-
-    /**
-     * Multiply one row with a factor. The original line in the matrix keep
-     * unchanged!
-     * 
-     * @param matrix
-     *            The matrix itself
-     * @param row
-     *            The row index to get scaled
-     * @param factor
-     *            The factor. Must be the same solid as the matrix!
-     * @return
-     */
-    private Solid[] multiply(Solid[][] matrix, int row, Solid factor) {
-        Solid[] temp = matrix[row].clone();
-        int border = temp.length;
-        for (int i = 0; i < border; ++i)
-            temp[i] = temp[i].mult(factor);
-        return temp;
     }
 
     /**

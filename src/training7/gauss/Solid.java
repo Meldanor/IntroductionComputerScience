@@ -40,7 +40,9 @@ public interface Solid {
      *            The element searches for the inverse
      * @return The inverse element of s
      */
-    public Solid getInverse(Solid s);
+    public Solid getMultInverse();
+    
+    public Solid getAddInverse();
 
     /**
      * Convert the Solid to a readable format
@@ -58,4 +60,5 @@ public interface Solid {
      * @return Is the element the neutral element of multiplication?
      */
     public boolean isZeroElement();
+
 }
