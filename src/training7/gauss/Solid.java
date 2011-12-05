@@ -33,15 +33,17 @@ public interface Solid {
     public Solid mult(Solid s);
 
     /**
-     * Returns the factor of the Solid, which solves: s / x = neutral element of
-     * Solid
+     * Returns the factor x of the Solid, which solves: s / x = one element
      * 
-     * @param s
-     *            The element searches for the inverse
      * @return The inverse element of s
      */
     public Solid getMultInverse();
-    
+
+    /**
+     * Returns the summand x of the Solid, which solves: s + x = zero element
+     * 
+     * @return
+     */
     public Solid getAddInverse();
 
     /**
