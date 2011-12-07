@@ -1,5 +1,4 @@
-import training7.Training7;
-
+import training8.geometry.TestGeo;
 
 /*
  * Copyright (C) 2011 Kilian Gaertner
@@ -23,7 +22,8 @@ public class Main {
         // Training4.test();
         // Training5.test();
         // Training6.test();
-         Training7.test();
+        // Training7.test();
+        TestGeo.test();
         // System.out.println(-1260 % 1440);
 
 //        //@formatter:off
@@ -45,12 +45,12 @@ public class Main {
 //                }
 //        };
 //        //@formatter:on
-//
-//        for (int i = 0; i < test.length; ++i) {
-//            System.out.println(test[i][0]);
-//            // for (int j = 0; j < test[i].length; ++j)
-//
-//        }
+        //
+        // for (int i = 0; i < test.length; ++i) {
+        // System.out.println(test[i][0]);
+        // // for (int j = 0; j < test[i].length; ++j)
+        //
+        // }
     }
 
 }
