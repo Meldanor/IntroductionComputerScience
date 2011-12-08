@@ -19,6 +19,8 @@ public class RestClass implements Solid {
         this.repre = representative % m;
         if (!isPrime(m))
             throw new RuntimeException("The base m=" + m + " is not a prime!");
+        // because in java modulo can be negativ, example -8 % 7 = -1, but
+        // expected was 6
         if (repre < 0)
             repre += m;
         this.m = m;
