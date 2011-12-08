@@ -162,7 +162,7 @@ public class Gauss {
 
             for (Solid s : line) {
                 sBuilder.append(s.toString());
-                sBuilder.append(" ");
+                sBuilder.append("\t");
             }
             // use system line seperator so code runs on every OS with JVM
             sBuilder.append(System.getProperty("line.separator"));
