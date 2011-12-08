@@ -31,6 +31,7 @@ public class FastPot {
     private static int counterRek = 0;
     private static int counterIter = 0;
 
+    /* Algorithmus O(ln n)*/
     public static double fastPotRek(double x, int n) {
         ++counterRek;
         if (n == 0)
@@ -62,7 +63,7 @@ public class FastPot {
 
     public static void test() {
 
-        for (int i = 0; i <= 31; ++i) {
+        for (int i = 0; i <= 33; ++i) {
             System.out.println(i + " = iter(" + fastPotIter(2, i) + ") with "
                     + counterIter + " loops \t rek(" + fastPotRek(2, i)
                     + ")with deepth of " + counterRek);

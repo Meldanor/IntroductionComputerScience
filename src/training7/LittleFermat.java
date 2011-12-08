@@ -18,7 +18,7 @@ public class LittleFermat {
     private static Random rand = new Random();
 
     public static BigInteger getRandom(BigInteger n) {
-        return new BigInteger(n.bitCount(), rand);
+        return new BigInteger(n.bitCount()-1, rand);
     }
 
     public static boolean primeTest(BigInteger p) {
@@ -26,7 +26,7 @@ public class LittleFermat {
         BigInteger test = null;
         for (int i = 0; i < 10; ++i) {
             test = getRandom(p);
-            if (!test.modPow(p, p).equals(test.mod(p)))
+            if (!test.modPow(p, p).equals(test))
                 return false;
         }
         return true;

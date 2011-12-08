@@ -13,8 +13,8 @@ package training7;
 public class Training7 {
 
     public static void test() {
-         FastPot.test();
-//        LittleFermat.test();
+//         FastPot.test();
+        LittleFermat.test();
     }
 
 }
