@@ -67,7 +67,8 @@ public class RatNumber implements Comparable<RatNumber>, Solid {
 
     public Solid add(Solid s) {
         if (!(s instanceof RatNumber))
-            throw new RuntimeException("Wrong solid!");
+            throw new RuntimeException(this.getClass().getName()
+                    + "expected, but it was " + s.getClass().getName());
 
         RatNumber r = (RatNumber) s;
         int d1 = this.getDenom();
