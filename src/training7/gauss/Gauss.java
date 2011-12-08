@@ -10,6 +10,8 @@
 
 package training7.gauss;
 
+import java.util.Arrays;
+
 public class Gauss {
 
     private final Solid[][] original;
@@ -20,37 +22,62 @@ public class Gauss {
     }
 
     public void solve() {
-        Solid[][] matrix = original.clone();
-        Solid[] pivot = null;
-        for (int k = 0; k < matrix.length; ++k) {
-            pivot = matrix[k];
-            if (pivot[k].isZeroElement()) {
-                int result = searchForSwap(matrix, k, k);
-                if (result == -1)
-                    ++k;
-                else
-                    swap(matrix, k, result);
-            }
-            Solid mult = matrix[k][k].getMultInverse();
-            for (int i = 1; i < matrix[k].length; ++i)
-                pivot[i] = pivot[i].mult(mult);
-            for (int i = k + 1; i < matrix.length; ++i) {
-                for (int j = k; j < matrix[i].length; ++j) {
-                    matrix[i][j] = matrix[i][j].mult(mult);
+
+        result = original.clone();
+
+        // -1 because of we don't want to norm the results
+        for (int i = 0; i < result.length - 1; ++i) {
+            for (int j = i; j < result[i].length; ++j) {
+                // When there is a leading zero element in the column
+                if (result[i][j].isZeroElement()) {
+                    int temp = searchForSwap(result, i, j);
+                    // have found a row which is leading by a non zero element
+                    if (temp != -1)
+                        swap(result, i, temp);
+                    // when there is no zero element in this column go to the
+                    // next
+                    else
+                        ++i;
+
                 }
-                add(matrix, k, i);
+                Solid[] pivot = result[i].clone();
+                // change pivot to one element
+                if (!pivot[j].isOneElement())
+                    pivot = mult(result, i, result[i][j].getMultInverse());
+
+                // add all rows with the pivot row but not the pivot row with
+                // itself
+                for (int k = 0; k < result.length; ++k)
+                    if (k != i)
+                        result[k] = add(result[k],
+                                mult(result, i, result[k][j].getAddInverse()));
+
+                // look for a contradiction in the
+                for (int k = 0; k < result.length; ++i) {
+                    if (!result[k][result[k].length - 1].isZeroElement()) {
+                        inner: for (int t = 0; t < result[k].length - 1; ++k)
+                            if (!result[k][t].isZeroElement())
+                                break inner;
+                        throw new RuntimeException(
+                                "Can't solve system because of a contradiction.\n"
+                                        + Arrays.toString(result[k]));
+                    }
+                }
             }
         }
 
-        this.result = matrix;
     }
 
-    private int searchForSwap(Solid[][] matrix, int row, int colum) {
-        for (int i = row + 1; i < matrix.length; ++i)
-            if (matrix[i][colum].isOneElement())
+    private int searchForSwap(Solid[][] matrix, int row, int column) {
+        int nonPerfect = -1;
+        for (int i = row + 1; i < matrix.length; ++i) {
+            if (matrix[i][column].isOneElement())
                 return i;
+            if (!matrix[i][column].isZeroElement())
+                nonPerfect = i;
 
-        return -1;
+        }
+        return nonPerfect;
     }
 
     /**
@@ -80,11 +107,21 @@ public class Gauss {
      * @param resultLine
      *            The line which will be changed
      */
-    private void add(Solid[][] matrix, int summandLine, int resultLine) {
-        int border = matrix[summandLine].length;
-        for (int i = 0; i < border; ++i)
-            matrix[resultLine][i] = matrix[resultLine][i]
-                    .add(matrix[summandLine][i]);
+    private Solid[] add(Solid[] a, Solid[] b) {
+        Solid[] t = new Solid[a.length];
+        for (int i = 0; i < a.length; ++i) {
+            t[i] = a[i].add(b[i]);
+        }
+
+        return t;
+    }
+
+    private Solid[] mult(Solid[][] matrix, int row, Solid factor) {
+        Solid[] result = matrix[row].clone();
+        for (int i = 0; i < result.length; ++i)
+            result[i] = result[i].mult(factor);
+
+        return result;
     }
 
     /**

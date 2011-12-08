@@ -10,7 +10,7 @@
 
 package training7.gauss;
 
-public interface Solid {
+public interface Solid extends Cloneable {
 
     /**
      * Add a element of the Solid to this element. Doesn't change the Solid

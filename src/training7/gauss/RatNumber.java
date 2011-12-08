@@ -65,7 +65,6 @@ public class RatNumber implements Comparable<RatNumber>, Solid {
         return this.num + "/" + this.denom;
     }
 
-    @Override
     public Solid add(Solid s) {
         if (!(s instanceof RatNumber))
             throw new RuntimeException("Wrong solid!");
@@ -95,7 +94,6 @@ public class RatNumber implements Comparable<RatNumber>, Solid {
         return new RatNumber(n1 - n2, kgV);
     }
 
-    @Override
     public Solid mult(Solid s) {
         if (!(s instanceof RatNumber))
             throw new RuntimeException(this.getClass().getName()
@@ -134,4 +132,10 @@ public class RatNumber implements Comparable<RatNumber>, Solid {
     public Solid getAddInverse() {
         return new RatNumber(getNum() * -1, getDenom());
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return new RatNumber(num, denom);
+    }
+
 }
