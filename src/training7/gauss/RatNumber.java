@@ -14,6 +14,11 @@ public class RatNumber implements Comparable<RatNumber>, Solid {
     private final int num;
     private final int denom;
 
+    public RatNumber(int n) {
+        this.num = n;
+        this.denom = 1;
+    }
+
     public RatNumber(int n, int d) throws RuntimeException {
         if (d == 0)
             throw new RuntimeException("divisor zero");
@@ -122,12 +127,12 @@ public class RatNumber implements Comparable<RatNumber>, Solid {
 
     @Override
     public boolean isOneElement() {
-        return num == 0;
+        return denom == num;
     }
 
     @Override
     public boolean isZeroElement() {
-        return denom == num;
+        return num == 0;
     }
 
     public Solid getAddInverse() {

@@ -1,4 +1,4 @@
-import training8.geometry.TestGeo;
+import training7.Training7;
 
 /*
  * Copyright (C) 2011 Kilian Gaertner
@@ -22,8 +22,18 @@ public class Main {
         // Training4.test();
         // Training5.test();
         // Training6.test();
-        // Training7.test();
-        TestGeo.test();
+         Training7.test();
+        // TestGeo.test();
+//        int m = 7;
+//        RestClass c = null;
+//        for (int i = 0; i < m; ++i) {
+//            c = new RestClass(i, m);
+//            System.out.println(c.toString());
+//            System.out.println(c.getAddInverse());
+//            System.out.println(c.getMultInverse());
+//            System.out.println();
+//        }
+
         // System.out.println(-1260 % 1440);
 
 //        //@formatter:off

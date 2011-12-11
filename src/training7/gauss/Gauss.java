@@ -38,7 +38,6 @@ public class Gauss {
                     // next
                     else
                         ++i;
-
                 }
                 Solid[] pivot = result[i].clone();
                 // change pivot to one element
@@ -51,7 +50,6 @@ public class Gauss {
                     if (k != i)
                         result[k] = add(result[k],
                                 mult(result, i, result[k][j].getAddInverse()));
-
                 // look for a contradiction in the
                 for (int k = 0; k < result.length; ++i) {
                     if (!result[k][result[k].length - 1].isZeroElement()) {
@@ -65,7 +63,6 @@ public class Gauss {
                 }
             }
         }
-
     }
 
     private int searchForSwap(Solid[][] matrix, int row, int column) {
@@ -108,7 +105,7 @@ public class Gauss {
      *            The line which will be changed
      */
     private Solid[] add(Solid[] a, Solid[] b) {
-        Solid[] t = new Solid[a.length];
+        Solid[] t = a.clone();
         for (int i = 0; i < a.length; ++i) {
             t[i] = a[i].add(b[i]);
         }
@@ -139,12 +136,8 @@ public class Gauss {
         return matrixToString(original);
     }
 
-    /**
-     * @return The normalized matrix as a readable string. Each row is sperator
-     *         by System.getProperty("line.separator")
-     */
-    public String resultToString(Solid[][] matrix) {
-        return matrixToString(matrix);
+    public String resultToString() {
+        return matrixToString(result);
     }
 
     /**
