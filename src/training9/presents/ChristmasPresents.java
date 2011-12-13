@@ -33,5 +33,4 @@ public class ChristmasPresents {
 
         return pricePaper + priceRibbon;
     }
-
 }
