@@ -14,7 +14,25 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class MergeSort {
-
+    
+    /*
+     * 5, 3, 4, 7, 1, 2
+     *     /     \
+     * 5,3,4     7,1,2
+     *  / \       / \
+     * 5  3,4    7   1,2
+     * |   / \   |   / \
+     * 5  3  4   7  1   2
+     * |  \  /   |   \ /
+     * 5   3,4   7   1,2
+     *  \  /      \   /
+     *  3,4,5       1,2,7
+     *       \     /
+     *     1,2,3,4,5,7
+     * a) divide&conquer = minimize your problem and solve it. With that solution solve the bigger problems
+     * b) Use only one array with different positions and work in-place
+     */
+    
     private static <T> void msort(T[] array, T[] copy, int l, int r,
             Comparator<T> c) {
         int i, j, k;
