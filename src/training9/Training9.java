@@ -13,7 +13,7 @@ package training9;
 public class Training9 {
 
     public static void test() {
-        // Quicksort.test();
-        MergeSort.test();
+         Quicksort.test();
+//        MergeSort.test();
     }
 }

@@ -22,8 +22,8 @@ public class Main {
         // Training4.test();
         // Training5.test();
         // Training6.test();
-        // Training9.test();
-        System.out.println(1.0 % 1);
+         Training9.test();
+//        System.out.println(1.0 % 1);
         // TestGeo.test();
         // int m = 7;
         // RestClass c = null;
