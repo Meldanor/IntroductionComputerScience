@@ -10,13 +10,13 @@
 
 package training9;
 
-import training9.presents.ChristmasPresents;
 
 public class Training9 {
 
     public static void test() {
         // Quicksort.test();
         // MergeSort.test();
-        ChristmasPresents.test();
+        // ChristmasPresents.test();
+        RegisterMachine.test();
     }
 }
