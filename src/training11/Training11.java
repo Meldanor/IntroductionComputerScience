@@ -1,7 +1,5 @@
-import training11.Training11;
-
 /*
- * Copyright (C) 2011 Kilian Gaertner
+ * Copyright (C) 2012 Kilian Gaertner
  * 
  * Dieser Quelltext ist Open Source und kann von jedem verwendet werden, der 
  * folgende Bedingung einhält:
@@ -10,14 +8,11 @@ import training11.Training11;
  * begegnen.
  */
 
-public class Main {
+package training11;
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
+public class Training11 {
 
-        Training11.test();
+    public static void test() {
+        BinIntComparator.test();
     }
-
 }
