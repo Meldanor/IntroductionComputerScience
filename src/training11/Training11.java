@@ -13,6 +13,6 @@ package training11;
 public class Training11 {
 
     public static void test() {
-        BinIntComparator.test();
+        Complexity.test();
     }
 }
