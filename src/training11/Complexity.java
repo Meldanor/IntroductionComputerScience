@@ -21,13 +21,15 @@ public class Complexity {
 
     private static final double LOG_RESULT = Math.log(2.0);
 
-    private static final long MICRO = 1000L;
-    private static final long MILLI = 1000L;
-    private static final long SEC = 1000L;
-    private static final long MIN = 60L;
-    private static final long HOUR = 60L;
-    private static final long DAY = 24L;
-    private static final long YEAR = 365L;
+    private static final double MICRO = 1000.0;
+    private static final double MILLI = 1000.0;
+    private static final double SEC = 1000.0;
+    private static final double MIN = 60.0;
+    private static final double HOUR = 60.0;
+    private static final double DAY = 24.0;
+    private static final double YEAR = 365.0;
+    private static final double YEAR_K = 1000.0;
+    private static final double YEAR_M = 1000.0;
 
     public static void test() {
         System.out.println("n\tld n\tn\tn*ld n\tn^2\tn^3\t2^n");
@@ -37,14 +39,13 @@ public class Complexity {
 
             System.out.print((int) Math.pow(2, k) + "\t");
             for (int i = 0; i < 6; ++i)
-                System.out
-                        .print(trimTime(calculateTime((int) Math.pow(2, k), i))
-                                + "\t");
+                System.out.print(trimTime(calculateTime(Math.pow(2, k), i))
+                        + "\t");
             System.out.println();
         }
     }
 
-    private static long calculateTime(int n, int algo) {
+    private static double calculateTime(double n, int algo) {
         switch (algo) {
             case LOGA:
                 return Math.round(Math.log(n) / LOG_RESULT);
@@ -57,17 +58,17 @@ public class Complexity {
             case CUBOID:
                 return n * n * n;
             case EXPO:
-                return Math.round(Math.pow(2.0, n));
+                return Math.pow(2, n);
             default:
                 throw new IllegalArgumentException("Unknown algorithm id "
                         + algo);
         }
     }
 
-    private static String trimTime(long time) {
-        if (time == Long.MAX_VALUE)
+    private static String trimTime(double time) {
+        if (time == Double.MAX_VALUE)
             return "Chuck Norris know";
-        long div = 1;
+        double div = 1.0;
         String unit = "ns";
         if (time > MICRO) {
             div *= MICRO;
@@ -96,6 +97,14 @@ public class Complexity {
         if (time > MICRO * MILLI * SEC * MIN * HOUR * DAY * YEAR) {
             div *= YEAR;
             unit = "a";
+        }
+        if (time > MICRO * MILLI * SEC * MIN * HOUR * DAY * YEAR * YEAR_K) {
+            div *= YEAR_K;
+            unit = "ka";
+        }
+        if (time > MICRO * MILLI * SEC * MIN * HOUR * DAY * YEAR * YEAR_K * YEAR_M) {
+            div *= YEAR_M;
+            unit = "ma";
         }
         return (time / div) + unit;
     }
