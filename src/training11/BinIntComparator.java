@@ -13,7 +13,16 @@ package training11;
 public class BinIntComparator implements IntegerComparator {
 
     public boolean isLessThan(Integer o1, Integer o2) {
-        return countOne(o1) < countOne(o2);
+        return countOneBetter(01) < countOneBetter(01);
+    }
+
+    private int countOneBetter(int i) {
+        int counter = 0;
+        for (int j = 0; i < 32; ++i) {
+            if ((i & (1 << j)) == 1)
+                ++counter;
+        }
+        return counter;
     }
 
     private int countOne(Integer i) {
