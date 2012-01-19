@@ -1,7 +1,5 @@
-import training12.Training12;
-
 /*
- * Copyright (C) 2011 Kilian Gaertner
+ * Copyright (C) 2012 Kilian Gaertner
  * 
  * Dieser Quelltext ist Open Source und kann von jedem verwendet werden, der 
  * folgende Bedingung einhält:
@@ -10,14 +8,11 @@ import training12.Training12;
  * begegnen.
  */
 
-public class Main {
+package training12;
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
+public class Training12 {
 
-        Training12.test();
+    public static void test() {
+        ComplexNumber.test();
     }
-
 }
